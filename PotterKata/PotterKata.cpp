@@ -75,17 +75,21 @@ std::map<int, int> ShoppingCart::get_cheapest_checkout_sequence(std::vector<int>
 	return cheapest_sequence;
 }
 
-int ShoppingCart::checkout(std::vector<int> &shopping_list)
+float ShoppingCart::get_discount_of_episode(int episode)
 {
-
 	float discount_type[] = { 1, 0.95, 0.9, 0.8, 0.75 };
+	return discount_type[episode - 1];
+}
+
+int ShoppingCart::checkout(std::vector<int> &shopping_list)
+{	
 	int total_price = 0;
 
 	std::map<int, int> cheapest_sequence = get_cheapest_checkout_sequence(shopping_list);
 
 	for (std::map<int, int>::iterator it = cheapest_sequence.begin(); it != cheapest_sequence.end(); ++it)
 	{
-		total_price += PRICE_SINGLE_BOOK * it->first* it->second * discount_type[it->first - 1];
+		total_price += PRICE_SINGLE_BOOK * it->first* it->second *get_discount_of_episode(it->first);
 	}
 
 	return total_price;

@@ -13,6 +13,7 @@ private:
 	void replace_bunch_5_episodes_and_bunch_3_episodes_to_bunch_4_episodes(std::map<int, int> &checkout_sequence);
 	std::map<int, int> produce_more_bunch_4_episodes_sequences(std::map<int, int> &checkout_sequence);
 	std::map<int, int> get_cheapest_checkout_sequence(std::vector<int> &shopping_list);
+	float get_discount_of_episode(int episode);
 
 public:
 	int checkout(std::vector<int> &shopping_list);
